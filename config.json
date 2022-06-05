@@ -1,0 +1,12 @@
+{
+  "CreateNewFiles": "true",
+  "OutputPath": "output/",
+  "MatchReplaces": [
+    {
+      "Match": ",",
+      "Replace": "|",
+      "IgnoreCase": "true",
+      "MultiLine": "true"
+    }
+  ]
+}
