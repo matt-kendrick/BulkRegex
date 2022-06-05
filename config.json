@@ -1,4 +1,5 @@
 {
+  "Description":  "Change From Comma Delimited to Pipe Delimited",
   "CreateNewFiles": "true",
   "OutputPath": "output/",
   "MatchReplaces": [

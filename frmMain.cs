@@ -74,6 +74,8 @@ namespace BulkRegEx
                 if (config.CreateNewFiles) outputPath = this.config.OutputPath + filename;
 
                 File.WriteAllText(outputPath, contents);
+
+                MessageBox.Show("Operations Complete", "Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

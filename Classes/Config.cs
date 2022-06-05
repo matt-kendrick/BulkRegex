@@ -8,6 +8,7 @@ namespace BulkRegEx.Classes
 {
     internal class Config
     {
+        public string Description { get; set; }
         public bool CreateNewFiles { get; set; }
         public string OutputPath { get; set; }
         public MatchReplace[] MatchReplaces { get; set; }
