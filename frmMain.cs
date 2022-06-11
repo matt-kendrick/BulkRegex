@@ -51,7 +51,14 @@ namespace BulkRegEx
 
         private void btnRun_Click(object sender, EventArgs e)
         {
-            string[] filepaths = Directory.EnumerateFiles("files/", "*.*", SearchOption.AllDirectories).ToArray<string>();
+            //string[] filepaths = Directory.EnumerateFiles("files/", "*.*", SearchOption.AllDirectories).ToArray<string>();
+
+            List<string> filepaths = new List<string>();
+
+            foreach(DataGridViewRow dr in dgFiles.Rows)
+            {
+                filepaths.Add(dr.Cells[0].Value.ToString());
+            }
 
             foreach(string filepath in filepaths)
             {
@@ -68,7 +75,7 @@ namespace BulkRegEx
                 }
 
                 // need just the filename
-                string filename = Regex.Replace(filepath, ".*/(.*)$", "$1");
+                string filename = Regex.Replace(filepath, ".*\\\\(.*)$", "$1");
 
                 string outputPath = filepath;
                 if (config.CreateNewFiles) outputPath = this.config.OutputPath + filename;
@@ -76,6 +83,30 @@ namespace BulkRegEx
                 File.WriteAllText(outputPath, contents);
 
                 MessageBox.Show("Operations Complete", "Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnAddFiles_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+
+            ofd.Multiselect = true;
+            ofd.InitialDirectory = Environment.SpecialFolder.Desktop.ToString();
+
+            if(ofd.ShowDialog() == DialogResult.OK)
+            {
+                if(ofd.FileNames.Length > 0)
+                {
+                    foreach (string filePath in ofd.FileNames)
+                    {
+                        dgFiles.Rows.Add(filePath);
+                    }
+                }
             }
         }
     }
